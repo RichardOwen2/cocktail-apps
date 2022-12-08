@@ -1,7 +1,7 @@
 class DrinkItem extends HTMLElement {
-  set drink(drink) {
-    this._drink = drink;
-    this._ingredients = this.getIngredients();
+  set item(drink) {
+    this.drink = drink;
+    this.ingredients = this.getIngredients();
     this.render();
   }
 
@@ -37,7 +37,7 @@ class DrinkItem extends HTMLElement {
       strMeasure13,
       strMeasure14,
       strMeasure15,
-    } = this._drink;
+    } = this.drink;
 
     const ingredients = [
       strIngredient1,
@@ -77,7 +77,7 @@ class DrinkItem extends HTMLElement {
 
     let text = ' ';
 
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 15; i += 1) {
       if (ingredients[i] && measure[i]) {
         text += `${measure[i]} ${ingredients[i]} ,`;
       } else {
@@ -91,12 +91,12 @@ class DrinkItem extends HTMLElement {
   render() {
     this.innerHTML = `
       <div class="max-w-[480px] bg-white rounded-lg shadow-md">
-        <img class="rounded-t-lg" src="${this._drink.strDrinkThumb}"/>
+        <img class="rounded-t-lg" src="${this.drink.strDrinkThumb}"/>
         <div class="h-[320px] p-5">
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">${this._drink.strDrink}</h5>
-          <p class="mb-2 font-normal text-gray-700 italic">${this._drink.strAlcoholic}</p>
-          <p class="mb-2 font-normal text-gray-700">Ingredients : ${this._ingredients}</p>
-          <p class="mb-2 font-normal text-gray-700">Instructions : ${this._drink.strInstructions}</p>
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">${this.drink.strDrink}</h5>
+          <p class="mb-2 font-normal text-gray-700 italic">${this.drink.strAlcoholic}</p>
+          <p class="mb-2 font-normal text-gray-700">Ingredients : ${this.ingredients}</p>
+          <p class="mb-2 font-normal text-gray-700">Instructions : ${this.drink.strInstructions}</p>
         </div>
       </div>
       `;

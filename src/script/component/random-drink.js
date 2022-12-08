@@ -5,11 +5,11 @@ class RandomDrink extends HTMLElement {
 
   set drink(drinks) {
     if (drinks) {
-      this._drinks = drinks;
-      if (this._drinks.strInstructions.length > 400) {
+      this.drinks = drinks;
+      if (this.drinks.strInstructions.length > 400) {
         this.renderDefault();
       } else {
-        this._ingredients = this.getIngredients();
+        this.ingredients = this.getIngredients();
         this.render();
       }
     } else {
@@ -49,7 +49,7 @@ class RandomDrink extends HTMLElement {
       strMeasure13,
       strMeasure14,
       strMeasure15,
-    } = this._drinks;
+    } = this.drinks;
 
     const ingredients = [
       strIngredient1,
@@ -89,7 +89,7 @@ class RandomDrink extends HTMLElement {
 
     let text = ' ';
 
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 15; i += 1) {
       if (ingredients[i] && measure[i]) {
         text += `${measure[i]} ${ingredients[i]} ,`;
       } else {
@@ -103,12 +103,12 @@ class RandomDrink extends HTMLElement {
   render() {
     this.innerHTML = `
         <div class="md:flex flex-row items-center">
-            <img class="object-cover w-full md:w-64 rounded-t-lg md:rounded-tr-none md:rounded-l-lg" src="${this._drinks.strDrinkThumb}" alt="">
+            <img class="object-cover w-full md:w-64 rounded-t-lg md:rounded-tr-none md:rounded-l-lg" src="${this.drinks.strDrinkThumb}" alt="">
             <div class="flex flex-col justify-between p-4 leading-normal">
-                <p class="mb-0.5 text-2xl xl:text-2xl font-bold tracking-tight text-gray-900">${this._drinks.strDrink}</p>
-                <p class="mb-3 font-normal xl:text-base lg:text-sm text-gray-700 italic">${this._drinks.strAlcoholic}</p>
-                <p class="mb-3 font-normal xl:text-base lg:text-sm text-gray-700">Ingredients : ${this._ingredients}</p>
-                <p class="mb-3 font-normal xl:text-base lg:text-sm text-gray-700">Instructions : ${this._drinks.strInstructions}</p>
+                <p class="mb-0.5 text-2xl xl:text-2xl font-bold tracking-tight text-gray-900">${this.drinks.strDrink}</p>
+                <p class="mb-3 font-normal xl:text-base lg:text-sm text-gray-700 italic">${this.drinks.strAlcoholic}</p>
+                <p class="mb-3 font-normal xl:text-base lg:text-sm text-gray-700">Ingredients : ${this.ingredients}</p>
+                <p class="mb-3 font-normal xl:text-base lg:text-sm text-gray-700">Instructions : ${this.drinks.strInstructions}</p>
             </div>
         </div>
         `;

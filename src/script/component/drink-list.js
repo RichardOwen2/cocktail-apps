@@ -1,4 +1,4 @@
-import './drink-item.js';
+import './drink-item';
 
 class DrinkList extends HTMLElement {
   constructor() {
@@ -7,30 +7,30 @@ class DrinkList extends HTMLElement {
   }
 
   set drink(drinks) {
-    this._drinks = drinks;
+    this.drinks = drinks;
     this.render();
   }
 
   set loadMore(drinks) {
-    this._drinks = drinks;
+    this.drinks = drinks;
     this.load();
   }
 
   render() {
     this.innerHTML = '';
-    this._drinks.forEach((drink) => {
+    this.drinks.forEach((drink) => {
       const drinkItemElement = document.createElement('drink-item');
-      drinkItemElement.drink = drink;
+      drinkItemElement.item = drink;
 
       this.appendChild(drinkItemElement);
     });
   }
 
   load() {
-    this._drinks.forEach((drink) => {
+    this.drinks.forEach((drink) => {
       if (drink.strInstructions.length < 400) {
         const drinkItemElement = document.createElement('drink-item');
-        drinkItemElement.drink = drink;
+        drinkItemElement.item = drink;
 
         this.appendChild(drinkItemElement);
       }

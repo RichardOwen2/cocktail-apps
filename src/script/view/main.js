@@ -1,22 +1,12 @@
-import '../component/random-drink.js';
-import '../component/drink-list.js';
-import '../component/search-bar.js';
-import RandomDataSource from '../data/random-data.js';
-import DrinkDataSource from '../data/drink-data.js';
+import '../component/random-drink';
+import '../component/drink-list';
+import '../component/search-bar';
+import RandomDataSource from '../data/random-data';
+import DrinkDataSource from '../data/drink-data';
 
 const randomRender = () => {
   const next = document.querySelector('#next');
   const randomDrink = document.querySelector('random-drink');
-
-  next.addEventListener('click', () => {
-    main();
-  });
-
-  const main = () => {
-    RandomDataSource.getRandomDrink()
-      .then(renderResult)
-      .catch(fallbackResult);
-  };
 
   const renderResult = (results) => {
     randomDrink.drink = results;
@@ -24,8 +14,19 @@ const randomRender = () => {
 
   const fallbackResult = () => {
     randomDrink.renderDefault();
+    // eslint-disable-next-line no-alert
     alert('Unknown Error');
   };
+
+  const main = () => {
+    RandomDataSource.getRandomDrink()
+      .then(renderResult)
+      .catch(fallbackResult);
+  };
+
+  next.addEventListener('click', () => {
+    main();
+  });
 
   main();
 };
@@ -35,12 +36,6 @@ const drinkRender = () => {
   const drinkList = document.querySelector('drink-list');
   const loadMore = document.querySelector('#load');
 
-  buttonSearch.addEventListener('click', () => {
-    DrinkDataSource.getDrink(document.querySelector('#input-search').value)
-      .then(renderResult)
-      .catch(fallbackResult);
-  });
-
   const renderResult = (results) => {
     let index = 3;
 
@@ -48,7 +43,8 @@ const drinkRender = () => {
       loadMore.classList.remove('hidden');
 
       loadMore.addEventListener('click', () => {
-        drinkList.loadMore = results.slice(index, (index + 3 > results.length) ? results.length : index + 3);
+        const end = index + 3 > results.length ? results.length : index + 3;
+        drinkList.loadMore = results.slice(index, end);
         index += 3;
         if (index > results.length) {
           loadMore.classList.add('hidden');
@@ -66,6 +62,12 @@ const drinkRender = () => {
     drinkList.renderError();
     alert(error);
   };
+
+  buttonSearch.addEventListener('click', () => {
+    DrinkDataSource.getDrink(document.querySelector('#input-search').value)
+      .then(renderResult)
+      .catch(fallbackResult);
+  });
 };
 
 export { randomRender, drinkRender };
