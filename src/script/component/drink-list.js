@@ -17,6 +17,7 @@ class DrinkList extends HTMLElement {
   }
 
   render() {
+    this.classList.add('grid');
     this.innerHTML = '';
     this.drinks.forEach((drink) => {
       const drinkItemElement = document.createElement('drink-item');
@@ -37,9 +38,10 @@ class DrinkList extends HTMLElement {
     });
   }
 
-  renderError() {
+  renderError(error) {
+    this.classList.remove('grid');
     this.innerHTML = `
-
+      <p class="font-bold text-center text-white">${error}</p>
     `;
   }
 }

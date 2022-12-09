@@ -58,9 +58,9 @@ const drinkRender = () => {
     }
   };
 
-  const fallbackResult = (error) => {
-    drinkList.renderError();
-    alert(error);
+  const fallbackResult = (message) => {
+    drinkList.renderError(message);
+    loadMore.classList.add('hidden');
   };
 
   buttonSearch.addEventListener('click', () => {
