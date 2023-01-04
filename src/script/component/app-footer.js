@@ -5,10 +5,10 @@ class AppFooter extends HTMLElement {
 
   render() {
     this.innerHTML = `
-            <div class="p-[30px] bg-[#000000]">
-                <p class="text-white font-bold text-center">Cocktail Apps @ 2022, Richard Owen Hoan</p>
-            </div>
-        `;
+        <div class="p-[30px] bg-[#000000]">
+            <p class="text-white font-bold text-center">Cocktail Apps @ 2022, Richard Owen Hoan</p>
+        </div>
+    `;
   }
 }
 
